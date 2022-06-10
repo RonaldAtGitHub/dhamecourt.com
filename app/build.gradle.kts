@@ -7,6 +7,12 @@ plugins {
 group = "com.dhamecourt"
 version = "0.0.1-SNAPSHOT"
 
+
+extensions.findByName("buildScan")?.withGroovyBuilder {
+    setProperty("termsOfServiceUrl", "https://gradle.com/terms-of-service")
+    setProperty("termsOfServiceAgree", "yes")
+}
+
 repositories {
     mavenCentral()
 }
@@ -24,6 +30,7 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
+
 
 /*
 1. gradle task
