@@ -182,7 +182,8 @@
     <div class="left-side">
 
       <h1>{{ title }}</h1>
-      <p>Please download Ronald d'Hamecourts CV here:</p>
+      <h2> <p>Résumé – Ronald d’Hamecourt</p> </h2>
+      <p>Thank you for your interest. You can download my CV below for a detailed overview of my professional experience, skills, and accomplishments.</p>
       <div class="container text-center mt-5">
         <a class="btn btn-primary btn-lg" href="assets/resume.pdf" download>
           Download
@@ -193,8 +194,8 @@
     <div class="right-side">
       <div class="pill-group">
         @for (item of [
-          { title: 'LinkedIn', link: 'assets/resume.pdf' },
-          { title: 'Github', link: 'https://www.linkedin.com/in/ronald-d-hamecourt/' },
+          { title: 'LinkedIn', link: 'https://www.linkedin.com/in/ronald-d-hamecourt' },
+          { title: 'Github', link: 'https://github.com/RonaldAtGithub' },
         ]; track item.title) {
           <a
             class="pill"
