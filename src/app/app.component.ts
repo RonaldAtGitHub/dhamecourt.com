@@ -8,5 +8,12 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'my-angular-app';
+  title = 'Welcome';
+
+  downloadResume() {
+    const link = document.createElement('a');
+    link.href = 'assets/resume.pdf';
+    link.download = 'resume.pdf';
+    link.click();
+  }
 }
