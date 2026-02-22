@@ -9,11 +9,4 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'Welcome';
-
-  downloadResume() {
-    const link = document.createElement('a');
-    link.href = 'assets/resume.pdf';
-    link.download = 'resume.pdf';
-    link.click();
-  }
 }
