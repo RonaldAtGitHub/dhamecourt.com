@@ -35,10 +35,5 @@
     "karma-jasmine-html-reporter": "~2.2.0",
     "karma-safari-launcher": "^1.0.0",
     "typescript": "~5.9.3"
-  },
-  "pnpm": {
-    "overrides": {
-      "ajv": ">=8.18.0"
-    }
   }
 }
