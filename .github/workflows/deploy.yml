@@ -1,8 +1,7 @@
 name: Deploy to GitHub Pages
 
 on:
-  pull_request:
-    types: [closed]
+  push:
     branches: [main]
   workflow_dispatch:
 
@@ -17,7 +16,6 @@ concurrency:
 
 jobs:
   build-and-deploy:
-    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -30,6 +28,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: pnpm
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -39,11 +38,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build
-        run: pnpm build -- --configuration production
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
+      - name: Build
+        run: pnpm exec ng build --configuration production --base-href ./
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
