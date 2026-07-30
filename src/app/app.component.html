@@ -1,48 +1,81 @@
-<main class="main">
-  <div class="content">
-    <div class="left-side">
-      <h1>{{ title }}</h1>
-      <h2>Resume - Ronald d'Hamecourt</h2>
-      <p>
-        Thank you for your interest. You can download my CV below for a detailed
-        overview of my professional experience, skills and accomplishments.
-      </p>
-      <div class="container text-center mt-5">
-        <a class="btn btn-primary btn-lg" href="assets/resume.pdf" download>
-          Download
-        </a>
-      </div>
-    </div>
-
-    <div class="divider" role="separator" aria-label="Divider"></div>
-
-    <div class="right-side">
-      <div class="pill-group">
-        @for (item of [
-          { title: 'LinkedIn', link: 'https://www.linkedin.com/in/ronald-d-hamecourt' },
-          { title: 'Github', link: 'https://github.com/RonaldAtGithub' },
-        ]; track item.title) {
-          <a
-            class="pill"
-            [href]="item.link"
-            target="_blank"
-            rel="noopener"
-          >
-            <span>{{ item.title }}</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="14"
-              viewBox="0 -960 960 960"
-              width="14"
-              fill="currentColor"
-            >
-              <path
-                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"
-              />
-            </svg>
-          </a>
-        }
-      </div>
-    </div>
+<header class="site-nav" [class.scrolled]="scrolled()">
+  <div class="container nav-inner">
+    <a class="wordmark" href="#top">Ronald d'Hamecourt</a>
+    <nav class="nav-links" aria-label="Main navigation">
+      @for (item of navLinks; track item.label) {
+        <a [href]="item.href">{{ item.label }}</a>
+      }
+    </nav>
+    <a class="btn btn-primary btn-sm" href="assets/resume.pdf" download>
+      Download CV
+    </a>
   </div>
+</header>
+
+<main id="top">
+  <section class="hero container">
+    <h1>Effective software,<br />built with care.</h1>
+    <p class="hero-sub">
+      I'm Ronald d'Hamecourt — a software developer from Wageningen with 25+
+      years of experience crafting Java back-ends and modern web front-ends.
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="assets/resume.pdf" download>
+        Download CV
+      </a>
+      <a
+        class="btn btn-ghost"
+        href="https://www.linkedin.com/in/ronald-d-hamecourt"
+        target="_blank"
+        rel="noopener"
+      >
+        LinkedIn
+      </a>
+    </div>
+    @if (photoUrl) {
+      <div class="hero-visual">
+        <img [src]="photoUrl" alt="Portrait of Ronald d'Hamecourt" />
+      </div>
+    }
+  </section>
+
+  <section id="about" class="container">
+    <h2 class="section-title">What I do</h2>
+    <div class="cards">
+      @for (card of highlights; track card.title) {
+        <article class="card">
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.body }}</p>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section id="contact" class="contact container">
+    <h2 class="section-title">Get in touch</h2>
+    <p class="contact-sub">
+      Interested in working together? Reach out, or grab my CV for the full
+      picture of my experience, skills and accomplishments.
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="mailto:resume@dhamecourt.com">Email</a>
+      @for (item of socialLinks; track item.label) {
+        <a
+          class="btn btn-ghost"
+          [href]="item.href"
+          target="_blank"
+          rel="noopener"
+        >
+          {{ item.label }}
+        </a>
+      }
+    </div>
+  </section>
 </main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>© {{ year }} Ronald d'Hamecourt</span>
+    <a href="assets/resume.pdf" download>Download CV</a>
+  </div>
+</footer>
