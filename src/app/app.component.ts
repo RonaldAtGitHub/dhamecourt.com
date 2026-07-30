@@ -9,9 +9,8 @@ import { Component, HostListener, signal } from '@angular/core';
 export class AppComponent {
   readonly year = new Date().getFullYear();
 
-  // Set to an asset path (e.g. 'assets/portrait.jpg') to show the framed
-  // hero visual; null hides the slot entirely.
-  readonly photoUrl: string | null = null;
+  // Set to null to hide the framed hero visual entirely.
+  readonly photoUrl: string | null = 'assets/hero-mountains.jpg';
 
   readonly scrolled = signal(false);
 
