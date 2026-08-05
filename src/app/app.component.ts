@@ -1,15 +1,29 @@
 import { Component, HostListener, signal } from '@angular/core';
 
+export type ThemeMode = 'day' | 'sunset' | 'night';
+
+const THEME_STORAGE_KEY = 'dhamecourt-theme';
+
+function initialTheme(): ThemeMode {
+  const stored = localStorage.getItem(THEME_STORAGE_KEY);
+  return stored === 'day' || stored === 'sunset' || stored === 'night'
+    ? stored
+    : 'sunset';
+}
+
 @Component({
   standalone: true,
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  host: { '[class]': '"theme-" + theme()' },
 })
 export class AppComponent {
   readonly year = new Date().getFullYear();
 
   readonly scrolled = signal(false);
+
+  readonly theme = signal<ThemeMode>(initialTheme());
 
   readonly navLinks = [
     { label: 'About', href: '#about' },
@@ -39,6 +53,11 @@ export class AppComponent {
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ronald-d-hamecourt' },
     { label: 'GitHub', href: 'https://github.com/RonaldAtGithub' },
   ];
+
+  setTheme(mode: ThemeMode): void {
+    this.theme.set(mode);
+    localStorage.setItem(THEME_STORAGE_KEY, mode);
+  }
 
   @HostListener('window:scroll')
   onScroll(): void {

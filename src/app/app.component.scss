@@ -1,4 +1,48 @@
 /* ---------------------------------------------------------------------------
+   Background modes (day / sunset / night)
+--------------------------------------------------------------------------- */
+:host {
+  display: block;
+
+  /* Default: sunset — the superwhisper-style purple/pink dusk. */
+  --hero-gradient: linear-gradient(
+    180deg,
+    #000000 0%,
+    #00052e 20%,
+    #29285e 45%,
+    #543c7b 65%,
+    #855a92 80%,
+    #c386ab 92%,
+    var(--bg) 100%
+  );
+}
+
+:host(.theme-day) {
+  --hero-gradient: linear-gradient(
+    180deg,
+    #000814 0%,
+    #062c66 22%,
+    #1b4a9e 45%,
+    #4a86d8 68%,
+    #93bce8 85%,
+    #c9def2 93%,
+    var(--bg) 100%
+  );
+}
+
+:host(.theme-night) {
+  --hero-gradient: linear-gradient(
+    180deg,
+    #000000 0%,
+    #010514 30%,
+    #071030 55%,
+    #14204f 75%,
+    #253060 90%,
+    var(--bg) 100%
+  );
+}
+
+/* ---------------------------------------------------------------------------
    Navigation
 --------------------------------------------------------------------------- */
 .site-nav {
@@ -50,20 +94,51 @@
   }
 }
 
+.mode-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.3rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(11, 11, 12, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.mode-btn {
+  display: grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+
+  svg {
+    width: 0.95rem;
+    height: 0.95rem;
+  }
+
+  &:hover {
+    color: var(--text);
+  }
+
+  &.active {
+    background: rgba(255, 255, 255, 0.16);
+    color: var(--text);
+  }
+}
+
 /* ---------------------------------------------------------------------------
    Hero
 --------------------------------------------------------------------------- */
 .hero-section {
-  background: linear-gradient(
-    180deg,
-    #000000 0%,
-    #00052e 20%,
-    #29285e 45%,
-    #543c7b 65%,
-    #855a92 80%,
-    #c386ab 92%,
-    var(--bg) 100%
-  );
+  background: var(--hero-gradient);
 }
 
 .hero {
@@ -205,6 +280,28 @@ section {
 
   .nav-inner {
     justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .wordmark {
+    font-size: 0.9rem;
+  }
+
+  .mode-btn {
+    width: 1.6rem;
+    height: 1.6rem;
+
+    svg {
+      width: 0.85rem;
+      height: 0.85rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  /* The hero right below repeats this CTA, so the nav can drop it. */
+  .site-nav .btn {
+    display: none;
   }
 
   .footer-inner {

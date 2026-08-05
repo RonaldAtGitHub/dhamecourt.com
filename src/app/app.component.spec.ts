@@ -3,6 +3,7 @@ import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
+    localStorage.removeItem('dhamecourt-theme');
     await TestBed.configureTestingModule({
       imports: [AppComponent],
     }).compileComponents();
@@ -19,8 +20,28 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Effective software'
+      'Engineering software'
     );
+  });
+
+  it('should default to the sunset background mode', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    expect(fixture.componentInstance.theme()).toBe('sunset');
+    expect(fixture.nativeElement.classList).toContain('theme-sunset');
+  });
+
+  it('should switch and persist the background mode', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const dayButton = fixture.nativeElement.querySelector(
+      'button[aria-label="Day mode"]'
+    ) as HTMLButtonElement;
+    dayButton.click();
+    fixture.detectChanges();
+    expect(fixture.componentInstance.theme()).toBe('day');
+    expect(fixture.nativeElement.classList).toContain('theme-day');
+    expect(localStorage.getItem('dhamecourt-theme')).toBe('day');
   });
 
   it('should render the highlight cards', () => {
