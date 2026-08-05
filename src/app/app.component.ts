@@ -9,9 +9,6 @@ import { Component, HostListener, signal } from '@angular/core';
 export class AppComponent {
   readonly year = new Date().getFullYear();
 
-  // Set to null to hide the framed hero visual entirely.
-  readonly photoUrl: string | null = 'assets/hero-mountains.jpg';
-
   readonly scrolled = signal(false);
 
   readonly navLinks = [

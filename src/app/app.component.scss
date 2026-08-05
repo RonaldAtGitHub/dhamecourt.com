@@ -53,6 +53,19 @@
 /* ---------------------------------------------------------------------------
    Hero
 --------------------------------------------------------------------------- */
+.hero-section {
+  background: linear-gradient(
+    180deg,
+    #000000 0%,
+    #00052e 20%,
+    #29285e 45%,
+    #543c7b 65%,
+    #855a92 80%,
+    #c386ab 92%,
+    var(--bg) 100%
+  );
+}
+
 .hero {
   display: flex;
   flex-direction: column;
@@ -82,23 +95,6 @@
   gap: 0.875rem;
   margin-top: 2.25rem;
   animation: rise 0.7s ease 0.2s both;
-}
-
-.hero-visual {
-  margin-top: 4rem;
-  padding: 0.5rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  background: var(--surface);
-  animation: rise 0.7s ease 0.3s both;
-
-  img {
-    display: block;
-    width: 100%;
-    max-width: 58rem;
-    height: auto;
-    border-radius: var(--radius-md);
-  }
 }
 
 @keyframes rise {
