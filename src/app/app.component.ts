@@ -22,11 +22,15 @@ export class AppComponent {
   readonly highlights = [
     {
       title: 'Back-end',
-      body: 'Java and Spring Boot microservices on an AWS Kubernetes platform, with a focus on clean, SOLID code and API-first design.',
+      body: 'Java and Spring Boot microservices on an AWS Kubernetes platform, plus HCL Domino development, with a focus on clean, SOLID code and API-first design.',
     },
     {
       title: 'Front-end',
-      body: 'TypeScript with Angular and Vue. Led major front-end modernizations, migrating legacy stacks to today’s frameworks.',
+      body: 'TypeScript with Angular and Vue, modernizing legacy front-end stacks into today’s frameworks.',
+    },
+    {
+      title: 'AI-assisted engineering',
+      body: 'Building with AI coding tools like Devin, Claude Code, ChatGPT Codex, and GitHub Copilot to move faster without cutting corners.',
     },
     {
       title: 'Team & craft',

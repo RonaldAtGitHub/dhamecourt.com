@@ -127,7 +127,7 @@ section {
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.25rem;
 }
 
@@ -196,6 +196,12 @@ section {
 /* ---------------------------------------------------------------------------
    Responsive
 --------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 700px) {
   .nav-links {
     display: none;
@@ -207,5 +213,9 @@ section {
 
   .footer-inner {
     flex-direction: column;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
   }
 }
