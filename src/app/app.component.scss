@@ -1,45 +1,59 @@
 /* ---------------------------------------------------------------------------
    Background modes (day / sunset / night)
+
+   One continuous gradient spans the entire page, dark at the top and light
+   at the bottom — no fade back to black. The bottom region is light in the
+   day and sunset modes, so the contact/footer "tail" text switches to dark
+   ink there via the --tail-* variables.
 --------------------------------------------------------------------------- */
 :host {
   display: block;
 
   /* Default: sunset — the superwhisper-style purple/pink dusk. */
-  --hero-gradient: linear-gradient(
+  --page-gradient: linear-gradient(
     180deg,
     #000000 0%,
-    #00052e 20%,
-    #29285e 45%,
-    #543c7b 65%,
-    #855a92 80%,
-    #c386ab 92%,
-    var(--bg) 100%
+    #00052e 14%,
+    #29285e 34%,
+    #543c7b 55%,
+    #855a92 76%,
+    #c386ab 94%
   );
+  --tail-text: #1c0f22;
+  --tail-muted: rgba(28, 15, 34, 0.72);
+  --tail-border: rgba(28, 15, 34, 0.25);
+
+  background: var(--page-gradient);
 }
 
 :host(.theme-day) {
-  --hero-gradient: linear-gradient(
+  --page-gradient: linear-gradient(
     180deg,
     #000814 0%,
-    #062c66 22%,
-    #1b4a9e 45%,
-    #4a86d8 68%,
-    #93bce8 85%,
-    #c9def2 93%,
-    var(--bg) 100%
+    #062c66 16%,
+    #1b4a9e 36%,
+    #4a86d8 58%,
+    #93bce8 80%,
+    #c9def2 95%
   );
+  --tail-text: #0a1c33;
+  --tail-muted: rgba(10, 28, 51, 0.72);
+  --tail-border: rgba(10, 28, 51, 0.25);
 }
 
 :host(.theme-night) {
-  --hero-gradient: linear-gradient(
+  --page-gradient: linear-gradient(
     180deg,
     #000000 0%,
-    #010514 30%,
-    #071030 55%,
-    #14204f 75%,
-    #253060 90%,
-    var(--bg) 100%
+    #010514 25%,
+    #071030 48%,
+    #14204f 68%,
+    #253060 85%,
+    #324078 97%
   );
+  --tail-text: var(--text);
+  --tail-muted: var(--text-muted);
+  --tail-border: var(--border);
 }
 
 /* ---------------------------------------------------------------------------
@@ -137,10 +151,6 @@
 /* ---------------------------------------------------------------------------
    Hero
 --------------------------------------------------------------------------- */
-.hero-section {
-  background: var(--hero-gradient);
-}
-
 .hero {
   display: flex;
   flex-direction: column;
@@ -232,18 +242,28 @@ section {
 --------------------------------------------------------------------------- */
 .contact {
   text-align: center;
+  color: var(--tail-text);
 }
 
 .contact-sub {
   max-width: 34rem;
   margin-inline: auto;
-  color: var(--text-muted);
+  color: var(--tail-muted);
+}
+
+.contact .btn-ghost {
+  color: inherit;
+  border-color: var(--tail-border);
+
+  &:hover {
+    border-color: var(--tail-text);
+  }
 }
 
 .site-footer {
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--tail-border);
   padding-block: 2rem;
-  color: var(--text-faint);
+  color: var(--tail-muted);
   font-size: 0.875rem;
 }
 
@@ -254,12 +274,12 @@ section {
   gap: 1rem;
 
   a {
-    color: var(--text-faint);
+    color: var(--tail-muted);
     text-decoration: none;
     transition: color 0.2s ease;
 
     &:hover {
-      color: var(--text);
+      color: var(--tail-text);
     }
   }
 }
